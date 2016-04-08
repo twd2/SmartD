@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}SmartD{% end %}</title>
+    <link href="{{ static_url('bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ static_url('custom.css')}}" rel="stylesheet">
+    <script src="{{ static_url('jquery.js')}}"></script>
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    <div class="container theme-showcase" role="main">
+      {% block body %}Default body{% end %}
+    </div>
+    <script src="{{ static_url('bootstrap/js/bootstrap.js')}}"></script>
+  </body>
+</html>

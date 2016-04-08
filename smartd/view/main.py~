@@ -1,0 +1,10 @@
+from smartd import app
+from smartd.view import base
+from tornado import web
+from tornado import options
+
+@app.route('/(\d+)')
+class MainHandler(base.BaseHandler):
+  def get(self, x):
+    self.render('main.html', x=x)
+

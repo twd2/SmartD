@@ -1,0 +1,4 @@
+        <div id="container-{{ type }}" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        Latest: 
+        <span id="{{ type }}-value">{% if doc %}{{ doc['value'] }}{% else %}Not avaliable{% end %}</span>{{ unit }}
+        <span id="{{ type }}-datetime">{% if doc %}(at {{ doc['_id'].generation_time.strftime('%Y-%m-%d %X') }}){% end %}</span>
