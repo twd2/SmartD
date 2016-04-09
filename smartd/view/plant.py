@@ -5,7 +5,7 @@ from smartd.view import base
 from smartd.view import ws
 from tornado import web, options, gen
 
-@app.route('/plant')
+@app.route('Plant', '/plant')
 class PlantHandler(base.BaseHandler):
   @gen.coroutine
   def get(self):
@@ -14,7 +14,7 @@ class PlantHandler(base.BaseHandler):
                 light=(yield data.get('plant', 'light')),
                 tank=(yield data.get('plant', 'tank')))
 
-@app.route('/plant-ws')
+@app.route('Plant WebSocket', '/plant-ws')
 class PlantHandler(ws.BaseHandler):
   def open(self):
     event.subscribe(self._on_event, ['data-updated'])

@@ -1,11 +1,11 @@
 from tornado import ioloop, web, options, template
 
 template_loader = None
-Routes = []
+_routes = []
 
-def route(r):
+def route(name, r):
   def decorate(cls):
-    Routes.append((r, cls))
+    _routes.append(web.URLSpec(r, cls, kwargs={'name': name}, name=name))
     return cls
   return decorate
 
@@ -13,7 +13,7 @@ def make_app(**kwargs):
   from smartd.view import data
   from smartd.view import main
   from smartd.view import plant
-  return web.Application(Routes, **kwargs)
+  return web.Application(_routes, **kwargs)
 
 def init_template(p):
   global template_loader
