@@ -52,7 +52,7 @@ void setup()
     initBH1750();
   #endif
   
-  #ifdef USE_SHumidity
+  #ifdef USE_SHUMIDITY
     #ifdef DEBUG
       Serial.println("Using SHumidity");
     #endif
