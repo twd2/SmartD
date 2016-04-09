@@ -1,5 +1,3 @@
-#include <RCSwitch.h>
-
 #define RXD 0
 #define LED_PIN 13
 
@@ -22,8 +20,11 @@
 #define TYPE_Humidity       0b01011110L
 #define TYPE_Distance       0b01100000L
 #define TYPE_Illumination   0b01100001L
+#define TYPE_SHumidity      0b01100010L
 
 //Boolean Sensors
+//32bits
+#define TYPE_Watered        0b01100011L
 //24bits
 #define TYPE_Magnet         0b01010101L //F F F F
 #define TYPE_Button         0b01010100L //F F F L

@@ -1,3 +1,4 @@
+#include <RCSwitch.h>
 #include "receiver.h"
 
 RCSwitch mySwitch = RCSwitch();
@@ -87,7 +88,7 @@ void loop()
       addr = (raw & _32_ADDR_MASK) >> 24;
       type = (raw & _32_TYPE_MASK) >> 16;
       value = raw & _32_VALUE_MASK;
-      switch(type)
+      switch (type)
       {
       case TYPE_Temperature:
       case TYPE_Humidity:
@@ -96,13 +97,19 @@ void loop()
           break;
         sendData(addr, type, ((double)((int)value)) / 100.0);
         break;
+      case TYPE_SHumidity:
+        if (!checkSensor(addr))
+          break;
+        sendData(addr, type, ((double)((int)value)) / 10.24);
+        break;
+      case TYPE_Watered:
       case TYPE_Illumination:
         if (!checkSensor(addr))
           break;
-        sendData(addr, type, (double)(value));
+        sendData(addr, type, value);
         break;
       default:
-        //drop
+        // drop
         break;
       }
     }
@@ -111,7 +118,7 @@ void loop()
       addr = (raw & _24_ADDR_MASK) >> 8;
       type = (raw & _24_TYPE_MASK) >> 16;
       value = raw & _24_VALUE_MASK;
-      switch(type)
+      switch (type)
       {
       case TYPE_Magnet:
       case TYPE_Button:
@@ -124,13 +131,13 @@ void loop()
           char mystr[10];
           memset(mystr, 0, sizeof(mystr));
           mystr[0] = '\0';
-          if(value & 0b11000000) 
+          if (value & 0b11000000) 
               strcat(mystr, "2;"); //B
-          if(value & 0b00110000) 
+          if (value & 0b00110000) 
               strcat(mystr, "3;"); //C
-          if(value & 0b00001100) 
+          if (value & 0b00001100) 
               strcat(mystr, "1;"); //A
-          if(value & 0b00000011) 
+          if (value & 0b00000011) 
               strcat(mystr, "4;"); //D
           if (strlen(mystr) > 0)
           {

@@ -17,4 +17,3 @@ def unsubscribe(callback):
   if callback in _subscribers:
     del _subscribers[callback]
 
-

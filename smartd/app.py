@@ -13,6 +13,7 @@ def make_app(**kwargs):
   from smartd.view import data
   from smartd.view import main
   from smartd.view import plant
+  from smartd.view import env
   return web.Application(_routes, **kwargs)
 
 def init_template(p):

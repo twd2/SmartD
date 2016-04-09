@@ -26,8 +26,9 @@ def api(url, **kwargs):
 def put_data(category, type, value):
   return api(SERVER + '/data/' + category + '/' + type, value=value, key=KEY)
 
-type_string = {0b01011110: 'humidity', 0b01011111: 'temperature', 0b01100000: 'tank', 0b01100001: 'light'}
-category_string = {1: 'plant', 2: 'plant', 21: 'plant'}
+type_string = {0b01100010: 'humidity', 0b01100011: 'watered', 0b01011110: 'humidity',
+               0b01011111: 'temperature', 0b01100000: 'distance', 0b01100001: 'light'}
+category_string = {1: 'plant', 2: 'plant', 21: 'env'}
 
 def main():
   while True:
@@ -37,18 +38,20 @@ def main():
         line = tty.readline().decode().strip()
         print(line)
         try:
-          addr, type, value = line.split(',') # 0: address, 1: type, 2: value
+          addr, type, value = line.split(',')
           addr = int(addr)
           type = int(type)
           if type in type_string and addr in category_string:
-            put_data(category_string[addr], type_string[type], value)
+            print(put_data(category_string[addr], type_string[type], value))
             print((category_string[addr], type_string[type], value))
           else:
             print('unknown addr or type')
         except Exception as ex:
+          print('error')
           print(ex)
       
     except Exception as ex:
+      print('error')
       print(ex)
 
 if __name__ == '__main__':

@@ -5,19 +5,17 @@ from smartd.view import base
 from smartd.view import ws
 from tornado import web, options, gen
 
-@app.route('Plant', '/plant')
-class PlantHandler(base.BaseHandler):
+@app.route('Environment', '/env')
+class EnvHandler(base.BaseHandler):
   @gen.coroutine
   def get(self):
-    history = yield data.get_list('plant', 'watered', count=50)
-    self.render('plant.html', humidity=(yield data.get('plant', 'humidity')),
-                temperature=(yield data.get('plant', 'temperature')),
-                light=(yield data.get('plant', 'light')),
-                distance=(yield data.get('plant', 'distance')),
-                history=history)
+    self.render('env.html', humidity=(yield data.get('env', 'humidity')),
+                temperature=(yield data.get('env', 'temperature')),
+                light=(yield data.get('env', 'light')),
+                distance=(yield data.get('env', 'distance')))
 
-@app.route('Plant WebSocket', '/plant-ws')
-class PlantWSHandler(ws.BaseHandler):
+@app.route('Environment WebSocket', '/env-ws')
+class EnvWSHandler(ws.BaseHandler):
   def open(self):
     event.subscribe(self._on_event, ['data-updated'])
     self.json({"event":"updated","type":"humidity"})
@@ -31,5 +29,5 @@ class PlantWSHandler(ws.BaseHandler):
   
   def _on_event(self, key, value):
     assert key == 'data-updated'
-    if value['category'] == 'plant':
+    if value['category'] == 'env':
       self.json({'event': 'updated', 'type': value['type']})
