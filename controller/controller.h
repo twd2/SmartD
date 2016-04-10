@@ -3,7 +3,7 @@
 #define DEBUG    1
 
 #define ADDRESS        1L
-#define SnoozingTimeMS   5L * 1000L
+#define SnoozingTimeMS   30L * 1000L
 //#define DUST_VAL A0
 //#define DUST_LED 5
 #define SHUMIDITY_VAL A0
