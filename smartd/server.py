@@ -3,12 +3,14 @@
 import os.path
 import smartd.app
 from tornado import ioloop, web, options
+from smartd import secret
 from smartd.util import ifttt
 
-options.define('address', default='0.0.0.0', help='HTTP server address.')
+options.define('address', default='127.0.0.1', help='HTTP server address.')
 options.define('port', default=8888, help='HTTP server port.')
-options.define('secret', default='9be11db93e203cea096e49d3ddc8db78', help='Cookie secret.')
-options.define('key', default='c959240243fc2aa96514678f288447b6', help='Client secret.')
+
+options.define('secret', default=secret.SECRET, help='Cookie secret.')
+options.define('key', default=secret.KEY, help='Client secret.')
 
 Root = os.path.dirname(__file__)
 

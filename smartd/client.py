@@ -6,10 +6,11 @@ import urllib
 import urllib.parse
 import urllib.request
 import argparse
+from smartd import secret
 
 SERIAL = '/dev/ttyUSB0'
 SERVER = 'http://127.0.0.1:8888'
-KEY = 'c959240243fc2aa96514678f288447b6'
+KEY = secret.KEY
 
 def api(url, **kwargs):
   if kwargs:
