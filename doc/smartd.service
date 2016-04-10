@@ -1,0 +1,11 @@
+[Unit]
+Description=SmartD Web Server
+After=network.target mongodb.service
+
+[Service]
+Type=simple
+ExecStart=
+ExecStart=/bin/su -c '/home/web/SmartD/start.sh' web
+
+[Install]
+WantedBy=multi-user.target

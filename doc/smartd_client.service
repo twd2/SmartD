@@ -1,0 +1,11 @@
+[Unit]
+Description=SmartD Client
+After=smartd.service
+
+[Service]
+Type=simple
+ExecStart=
+ExecStart=/home/web/SmartD/start_client.sh
+
+[Install]
+WantedBy=multi-user.target
