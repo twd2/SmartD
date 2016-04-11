@@ -1,4 +1,5 @@
 from smartd import app, util
+import smartd.util.datetime
 from smartd.model import data
 from smartd.util import event
 from smartd.view import base

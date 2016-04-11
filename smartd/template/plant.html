@@ -20,7 +20,7 @@
         <h3 class="panel-title">Soil Humidity</h3>
       </div>
       <div class="panel-body">
-        {% module Template('panel.html', type='humidity', unit='%', doc=humidity) %}
+        {% module Template('panel.html', strtime=strtime, type='humidity', unit='%', doc=humidity) %}
       </div>
     </div>
     <div class="panel panel-success">
@@ -28,7 +28,7 @@
         <h3 class="panel-title">Temperature</h3>
       </div>
       <div class="panel-body">
-        {% module Template('panel.html', type='temperature', unit='°C', doc=temperature) %}
+        {% module Template('panel.html', strtime=strtime, type='temperature', unit='°C', doc=temperature) %}
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
         <h3 class="panel-title">Light</h3>
       </div>
       <div class="panel-body">
-        {% module Template('panel.html', type='light', unit='lux', doc=light) %}
+        {% module Template('panel.html', strtime=strtime, type='light', unit='lux', doc=light) %}
       </div>
     </div>
     <div class="panel panel-success">
@@ -46,7 +46,7 @@
         <h3 class="panel-title">Water Tank</h3>
       </div>
       <div class="panel-body">
-        {% module Template('panel.html', type='distance', unit='cm', doc=distance) %}
+        {% module Template('panel.html', strtime=strtime, type='distance', unit='cm', doc=distance) %}
       </div>
     </div>
   </div>
