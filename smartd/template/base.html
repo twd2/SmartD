@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% if name %}{{ name }} - {% end %}SmartD{% end %}</title>
-    <link href="{{ static_url('bootstrap/css/bootstrap.css')}}" rel="stylesheet">
-    <link href="{{ static_url('custom.css')}}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/favicon.png" />
+    <link href="{{ static_url('bootstrap/css/bootstrap.css')}}" rel="stylesheet" />
+    <link href="{{ static_url('custom.css')}}" rel="stylesheet" />
     <script src="{{ static_url('jquery.js')}}"></script>
   </head>
   <body>
@@ -14,6 +15,11 @@
     <div class="container theme-showcase" role="main">
       {% block body %}Default body{% end %}
     </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Powered by <a href="//twd2.net/" target="_blank">twd2</a> / <a href="https://github.com/twd2/SmartD" target="_blank">Fork me on GitHub</a></p>
+      </div>
+    </footer>
     <script src="{{ static_url('bootstrap/js/bootstrap.js')}}"></script>
   </body>
 </html>
