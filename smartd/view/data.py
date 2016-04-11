@@ -1,4 +1,4 @@
-from smartd import app
+from smartd import app, util
 from smartd.model import data
 from smartd.util import event
 from smartd.view import base
@@ -14,7 +14,7 @@ class DataHandler(base.BaseHandler):
     to_float = lambda _: float(_) if self.get_query_argument('float', 'true') == 'true' else _
     l = yield data.get_list(category, type, int(self.get_query_argument('count', 100)))
     l.reverse()
-    x = [doc['_id'].generation_time.strftime('%Y-%m-%d %X') for doc in l]
+    x = [util.datetime.strtime(doc['_id'].generation_time) for doc in l]
     y = [to_float(doc['value']) for doc in l]
     self.json({'x':x, 'y':y})
 

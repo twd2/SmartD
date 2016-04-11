@@ -1,4 +1,4 @@
-from smartd.util import event
+from smartd.util import event, mailer
 from tornado import gen
 
 def init():

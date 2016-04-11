@@ -1,3 +1,5 @@
 tornado
 motor
 pyserial
+pytz
+smtplibaio

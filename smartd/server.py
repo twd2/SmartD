@@ -8,6 +8,7 @@ from smartd.util import ifttt
 
 options.define('address', default='127.0.0.1', help='HTTP server address.')
 options.define('port', default=8888, help='HTTP server port.')
+options.define('timezone', default='Asia/Shanghai', help='Timezone.')
 
 options.define('secret', default=secret.SECRET, help='Cookie secret.')
 options.define('key', default=secret.KEY, help='Client secret.')

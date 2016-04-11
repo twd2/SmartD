@@ -61,7 +61,7 @@
           <li>No Data</li>
         {% else %}
           {% for doc in history %}
-            <li>At {{ doc['_id'].generation_time.strftime('%Y-%m-%d %X') }} ({% if doc['value'] == '1' %}Succeeded{% else %}Failed{% end %})</li>
+            <li>At {{ strtime(doc['_id'].generation_time) }} ({% if doc['value'] == '1' %}Succeeded{% else %}Failed{% end %})</li>
           {% end %}
         {% end %}
         </ul>
