@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="page-header">
+  <h1>History</h1>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ category }} / {{ type }}</h3>
+      </div>
+      <div class="panel-body">
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <script type="text/javascript">
+$(document).ready(function()
+{
+      function render_chart($obj)
+      {
+        $obj.highcharts({
+          title: {
+            text: null
+          },
+          legend: {
+            enabled: false
+          },
+          credits: {
+            enabled: false
+          },
+          xAxis: {
+            categories: {% raw data_x %}
+          },
+          yAxis: {
+            title: {
+              text: null
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+          },
+          tooltip: {
+            valueSuffix: null
+          },
+          series: [{
+            name: 'Value',
+            data: {% raw data_y %}
+          }]
+        });
+      }
+
+      render_chart($('#container'));
+}); 
+  </script>
+  <script src="{{ static_url('hc/js/highcharts.js') }}"></script>
+  <script src="{{ static_url('hc/js/modules/exporting.js') }}"></script>
+{% end %}
