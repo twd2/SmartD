@@ -1,4 +1,4 @@
-        <div id="container-{{ type }}" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container-{{ type }}" style="min-width: 310px; height: 400px; margin: 0 auto">Loading...</div>
         Latest: 
         <span id="{{ type }}-value">{% if doc %}{{ doc['value'] }}{% else %}?{% end %}</span> {{ unit }}
         <span id="{{ type }}-datetime">{% if doc %}(at {{ strtime(doc['_id'].generation_time) }}){% end %}</span>

@@ -1,5 +1,6 @@
 from tornado import ioloop, web, options, template
 
+App = None
 template_loader = None
 _routes = []
 
@@ -10,12 +11,14 @@ def route(name, r):
   return decorate
 
 def make_app(**kwargs):
+  global App
   from smartd.view import data
   from smartd.view import main
   from smartd.view import plant
   from smartd.view import env
   from smartd.view import history
-  return web.Application(_routes, **kwargs)
+  App = web.Application(_routes, **kwargs)
+  return App
 
 def init_template(p):
   global template_loader

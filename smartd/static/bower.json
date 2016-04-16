@@ -1,0 +1,23 @@
+{
+  "name": "smartd",
+  "authors": [
+    "twd2 <twd2@163.com>"
+  ],
+  "description": "Smart dormitory.",
+  "main": "",
+  "license": "MIT",
+  "homepage": "smart dormitory",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "highcharts": "^4.2.4",
+    "jquery": "^2.2.3"
+  }
+}
