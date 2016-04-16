@@ -19,6 +19,7 @@ def rel_path(p):
   return os.path.join(Root, p)
 
 def main():
+  options.parse_command_line()
   app = smartd.app.make_app(cookie_secret=options.options.secret,
                             template_path=rel_path('template'),
                             static_path=rel_path('static'),
