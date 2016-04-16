@@ -8,7 +8,7 @@ pushd smartd
 
 if [ ! -f secret.py ]; then
   cp secret.py.example secret.py
-  echo '*** PLEASE EDIT secret.py ***'
+  echo '*** PLEASE EDIT smartd/secret.py ***'
   echo 'Press ENTER to continue.'
   read
 fi
@@ -21,4 +21,4 @@ popd
 
 popd
 
-echo 'Done. Command `python3 -m smartd.server\' to run.'
+echo "Done. Command \`python3 -m smartd.server' to run."
