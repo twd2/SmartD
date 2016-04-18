@@ -12,7 +12,6 @@
   <body>
     {% set nodes = ['Home', 'Plant', 'Environment'] %}
     {% module Template('nav.html', name=name, nodes=nodes)%}
-    {% include 'nav.html' %}
     <div class="container theme-showcase" role="main">
       {% block body %}Default body{% end %}
     </div>
