@@ -18,10 +18,20 @@ def get(category, type):
     return None
 
 @gen.coroutine
+def count(category=None, type=None):
+  query = {}
+  if category:
+    query['category'] = category
+  if type:
+    query['type'] = type
+  coll = db.Collection('data')
+  return (yield coll.find(query).count())
+
+@gen.coroutine
 def get_list(category, type, count=100):
   coll = db.Collection('data')
   return (yield coll.find({'category': category,
-                           'type': type}).sort('_id', -1).to_list(count))
+                           'type': type}).sort('_id', -1).limit(count).to_list(count))
 
 @gen.coroutine
 def ensure_indexes():

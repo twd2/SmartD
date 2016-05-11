@@ -13,6 +13,6 @@ setuptools.setup(name='smartd',
                    'smartd.view',
                  ],
                  package_data={
-                   'smartd': ['templates/*'],
+                   'smartd': ['template/*'],
                  },
                  install_requires=open('req.txt').readlines())
