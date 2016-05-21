@@ -28,6 +28,12 @@ def count(category=None, type=None):
   return (yield coll.find(query).count())
 
 @gen.coroutine
+def total_size():
+  db_ = db.Database()
+  stats = yield db_.command('collStats', 'data')
+  return stats['storageSize'] + stats['totalIndexSize']
+
+@gen.coroutine
 def get_list(category, type, count=100):
   coll = db.Collection('data')
   return (yield coll.find({'category': category,
