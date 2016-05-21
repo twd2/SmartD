@@ -1,7 +1,7 @@
 #define WATER_THRESHOLD 800 // humidity
 #define WATER_TANK_THRESHOLD 180.0 // min water in tank
 #define WATER_TIME 15000L // 15s
-#define WATER_MIN_INTERVAL 43200000L // 0.5 day // milliseconds = 10^-3s
+#define WATER_MIN_INTERVAL 21600000L // 1/4 day // milliseconds = 10^-3s
 
 bool water_do(unsigned int time)
 {
