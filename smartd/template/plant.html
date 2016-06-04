@@ -153,6 +153,10 @@
                $('#' + e['type'] + '-datetime').text('(at ' + obj['x'][obj['x'].length - 1] + ')');
              }
            }
+           else
+           {
+             $('#container-' + e['type']).text('No data present.');
+           }
          });
        }
     };
