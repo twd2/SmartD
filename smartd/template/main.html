@@ -60,6 +60,32 @@
   <div class="col-sm-4">
     <div class="panel panel-default">
       <div class="panel-heading">
+        <h3 class="panel-title">Disk - /</h3>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="min-width: 2em; width: {{ int(disk_info['percent']) }}%;">
+            {{ int(disk_info['percent']) }}%
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{ format(disk_info['total']) }}</span>
+            Total
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{ format(disk_info['used']) }}</span>
+            Used
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <h3 class="panel-title">Network</h3>
       </div>
       <div class="panel-body">
