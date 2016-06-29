@@ -3,3 +3,4 @@ motor
 pyserial
 pytz
 smtplibaio
+psutil

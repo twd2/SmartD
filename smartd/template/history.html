@@ -18,8 +18,15 @@
 <script type="text/javascript">
   $(document).ready(function()
   {
+    var data_x = {% raw data_x %},
+        data_y = {% raw data_y %};
     function render_chart($obj)
     {
+      if (data_x.length <= 0)
+      {
+        $obj.html('No data present.');
+        return;
+      }
       $obj.highcharts({
         title: {
           text: null
@@ -31,7 +38,7 @@
           enabled: false
         },
         xAxis: {
-          categories: {% raw data_x %}
+          categories: data_x
         },
         yAxis: {
           title: {
@@ -48,7 +55,7 @@
         },
         series: [{
           name: 'Value',
-          data: {% raw data_y %}
+          data: data_y
         }]
       });
     }

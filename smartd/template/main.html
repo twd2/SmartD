@@ -2,8 +2,105 @@
 {% block body %}
 <div class="jumbotron">
   <h1>SmartD</h1>
-  <p>Smart dormitory. 目前，我们有一个自动浇水器。</p>
-  <p>Now we have {{ count }} record{% if count > 1 %}s{% end %}.</p>
+  <p>Smart dormitory containing an automatic waterer <span class="label label-default">New</span>.</p>
+  <p>Now we have {{ count }} record{% if count > 1 %}s{% end %} ({{ format(size) }}).</p>
   <p><a class="btn btn-primary btn-lg" href="/plant" role="button">Learn more »</a></p>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">CPU</h3>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="min-width: 2em; width: {{ int(cpu_info['percent']) }}%;">
+            {{ int(cpu_info['percent']) }}%
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{ cpu_info['count'] }}</span>
+            Core
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{ cpu_info['load'][2] }}</span>
+            <span class="badge">{{ cpu_info['load'][1] }}</span>
+            <span class="badge">{{ cpu_info['load'][0] }}</span>
+            Load Average
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Memory</h3>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="min-width: 2em; width: {{ int(mem_info['percent']) }}%;">
+            {{ int(mem_info['percent']) }}%
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{ format(mem_info['total']) }}</span>
+            Total
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{ format(mem_info['available']) }}</span>
+            Available
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Disk - /</h3>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="min-width: 2em; width: {{ int(disk_info['percent']) }}%;">
+            {{ int(disk_info['percent']) }}%
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{ format(disk_info['total']) }}</span>
+            Total
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{ format(disk_info['used']) }}</span>
+            Used
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Network</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{ format(net_info['sent']) }}</span>
+            Sent
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{ format(net_info['recv']) }}</span>
+            Received
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 {% end %}
