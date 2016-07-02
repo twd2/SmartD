@@ -42,3 +42,20 @@ body {
   float: right;
   margin-top: -17px;
 }
+
+.cover {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  filter: alpha(opacity=60);
+  background-color: #777;
+  z-index: 1002;
+  left: 0px;
+  opacity: 0.6;
+  -moz-opacity: 0.6;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-align: center;
+  padding-top: 30%;
+}
