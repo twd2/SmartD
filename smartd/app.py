@@ -17,6 +17,8 @@ def make_app(**kwargs):
   from smartd.view import plant
   from smartd.view import env
   from smartd.view import history
+  from smartd.view import login
+  from smartd.view import magic
   App = web.Application(_routes, **kwargs)
   return App
 

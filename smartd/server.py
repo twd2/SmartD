@@ -4,6 +4,7 @@ import os.path
 import smartd.app
 from tornado import ioloop, web, options
 from smartd import secret
+from smartd.util import door
 from smartd.util import ifttt
 
 options.define('address', default='127.0.0.1', help='HTTP server address.')
@@ -25,6 +26,7 @@ def main():
                             static_path=rel_path('static'),
                             debug=True)
   app.listen(options.options.port, options.options.address)
+  door.init()
   ifttt.init()
   ioloop.IOLoop.current().start()
 
