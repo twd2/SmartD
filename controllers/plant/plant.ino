@@ -6,7 +6,7 @@
 #include <Wire.h>
 #include <math.h> 
 #include <SPI.h>
-#include "controller.h"
+#include "plant.h"
 
 void setup()
 {
