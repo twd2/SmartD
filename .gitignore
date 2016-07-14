@@ -64,6 +64,7 @@ target/
 # PCB
 __Previews/
 History/
+*.PcbDoc.htm
 
 *~
 secret.py
