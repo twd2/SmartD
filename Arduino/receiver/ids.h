@@ -16,7 +16,7 @@
 #define TYPE_Temperature    0b01011111L // 95
 #define TYPE_Distance       0b01100000L // 96
 #define TYPE_Illumination   0b01100001L // 97
-#define TYPE_SHumidity      0b01100010L // 98
+#define TYPE_Moisture       0b01100010L // 98
 #define TYPE_Watered        0b01100011L // 99
 
 // 24bits boolean sensors (compatible with PT2262)

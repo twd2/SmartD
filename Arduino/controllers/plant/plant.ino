@@ -7,9 +7,12 @@
 #include <math.h> 
 #include <SPI.h>
 #include "plant.h"
+#include "sleep.h"
 
 void setup()
 {
+  sleepInit();
+  
   #ifdef DEBUG
     Serial.begin(115200);
     Serial.println("Initializing...");
@@ -188,15 +191,18 @@ void loop()
   
   #ifdef DEBUG
     Serial.println("Snoozing...");
-    for(int i = 1; i <= SnoozingTimeMS / 1000; ++i)
+    for (int i = 1; i <= SnoozingTimeMS / 5000; ++i)
     {
       Serial.print("Snoozing(");
       Serial.print(i);
       Serial.println("s)...");
-      delay(1000);
+      Serial.println(millis());
+      delay(10);
+      sleep(5);
     }
   #else
-    delay(SnoozingTimeMS);
+    sleep(SnoozingTimeMS);
   #endif
   delay(ADDRESS * 100);
 }
+

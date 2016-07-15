@@ -40,7 +40,7 @@ void setup()
 {
   pinMode(LED_PIN, OUTPUT);
   Serial.begin(115200);
-  mySwitch.enableReceive(RXD);
+  mySwitch.enableReceive(digitalPinToInterrupt(RXD_PIN));
 }
 
 template <typename T>
@@ -59,7 +59,7 @@ void sendData(unsigned long addr, unsigned long type, const T value)
 
 void loop()
 {
-  mySwitch.enableReceive(RXD);
+  mySwitch.enableReceive(digitalPinToInterrupt(RXD_PIN));
   if (mySwitch.available())
   {
     unsigned long raw = mySwitch.getReceivedValue();
@@ -80,9 +80,10 @@ void loop()
       value = raw & _32_VALUE_MASK;
       switch (type)
       {
-      case TYPE_Temperature:
       case TYPE_Humidity:
       case TYPE_Distance:
+      case TYPE_Temperature:
+      case TYPE_Moisture:
       {
         if (!checkSensor(addr))
         {
@@ -90,16 +91,6 @@ void loop()
         }
         // Fixed point numbers.
         sendData(addr, type, ((double)((int)value)) / 100.0);
-        break;
-      }
-      case TYPE_SHumidity:
-      {
-        if (!checkSensor(addr))
-        {
-          break;
-        }
-        // ???
-        sendData(addr, type, ((double)((int)value)) / 10.24);
         break;
       }
       case TYPE_Watered:

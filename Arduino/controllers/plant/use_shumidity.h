@@ -8,7 +8,7 @@ void initSHumidity()
 
 int doSHumidity()
 {
-  return 1023 - analogRead(SHUMIDITY_VAL);
+  return analogRead(SHUMIDITY_VAL);
 }
 
 #endif

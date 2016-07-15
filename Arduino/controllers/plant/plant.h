@@ -6,7 +6,7 @@
 #define SnoozingTimeMS   30L * 1000L
 //#define DUST_VAL A0
 //#define DUST_LED 5
-#define SHUMIDITY_VAL A0
+#define SHUMIDITY_VAL A6
 #define DISTANCE_TRIG 8
 #define DISTANCE_ECHO 7
 //#define DHT11_BUS A1
