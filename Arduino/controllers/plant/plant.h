@@ -45,3 +45,11 @@ double lasttemp = 25.0;
 #if defined(USE_DHT11) && defined(USE_DHT22)
   #error cannot both dht11 dht22
 #endif
+
+#ifdef DEBUG
+#define DBG(x) (Serial.print(x))
+#define DBGLN(x) (Serial.println(x))
+#else
+#define DBG(x) ((void)0)
+#define DBGLN(x) ((void)0)
+#endif
