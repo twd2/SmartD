@@ -17,7 +17,9 @@ ISR(WDT_vect)
   }
   else
   {
+    // WDT overrun!
     Serial.println("WDT Overrun!!!");
+    delay(10);
   }
 }
 
@@ -28,6 +30,10 @@ void sleepInit()
 
 void sleep(int time)
 {
+  if (time == 0)
+  {
+    return;
+  }
   wdt_reset();
 
   _MCUSR = MCUSR;
@@ -38,10 +44,36 @@ void sleep(int time)
   /* In order to change WDE or the prescaler, we need to
    * set WDCE (This will allow updates for 4 clock cycles).
    */
-  WDTCSR |= _BV(WDCE) | _BV(WDE);
 
-  WDTCSR = _BV(WDP1) | _BV(WDP2); // 1s
-  WDTCSR |= _BV(WDIE); // Enable WDT interrupt (*no reset*).
+  if ((time & 0b111) == 0) // 8|time
+  {
+    WDTCSR |= _BV(WDCE) | _BV(WDE);
+    WDTCSR = _BV(WDP0) | _BV(WDP3); // 8s
+    WDTCSR |= _BV(WDIE); // Enable WDT interrupt (*no reset*).
+    time >>= 3;
+  }
+  else if ((time & 0b11) == 0) // 4|time
+  {
+    WDTCSR |= _BV(WDCE) | _BV(WDE);
+    WDTCSR = _BV(WDP3); // 4s
+    WDTCSR |= _BV(WDIE); // Enable WDT interrupt (*no reset*).
+    time >>= 2;
+  }
+  else if ((time & 0b1) == 0) // 2|time
+  {
+    WDTCSR |= _BV(WDCE) | _BV(WDE);
+    WDTCSR = _BV(WDP0) | _BV(WDP1) | _BV(WDP2); // 2s
+    WDTCSR |= _BV(WDIE); // Enable WDT interrupt (*no reset*).
+    time >>= 1;
+  }
+  else
+  {
+    WDTCSR |= _BV(WDCE) | _BV(WDE);
+    WDTCSR = _BV(WDP1) | _BV(WDP2); // 1s
+    WDTCSR |= _BV(WDIE); // Enable WDT interrupt (*no reset*).
+  }
+
+  delay(1);
 
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   sleep_enable();
@@ -56,6 +88,5 @@ void sleep(int time)
 
   sleep_disable();
   power_all_enable();
-  MCUSR = _MCUSR;
   WDTCSR = _WDTCSR & ~_BV(WDE) & ~_BV(WDIE);
 }
