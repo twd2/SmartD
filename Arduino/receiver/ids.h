@@ -21,4 +21,3 @@
 
 // 24bits boolean sensors (compatible with PT2262)
 #define TYPE_Control        0b01010001L // F F L F
-

@@ -63,7 +63,7 @@ void loop()
   if (mySwitch.available())
   {
     unsigned long raw = mySwitch.getReceivedValue();
-    unsigned long addr, type, value;
+    unsigned long addr, type, id, value;
     
     digitalWrite(LED_PIN, HIGH);
     delay(100);
@@ -77,6 +77,7 @@ void loop()
     {
       addr = (raw & _32_ADDR_MASK) >> 24;
       type = (raw & _32_TYPE_MASK) >> 16;
+      id = (raw & (_32_ADDR_MASK | _32_TYPE_MASK)) >> 16;
       value = raw & _32_VALUE_MASK;
       switch (type)
       {
@@ -85,7 +86,7 @@ void loop()
       case TYPE_Temperature:
       case TYPE_Moisture:
       {
-        if (!checkSensor(addr))
+        if (!checkSensor(id))
         {
           break;
         }
@@ -96,7 +97,7 @@ void loop()
       case TYPE_Watered:
       case TYPE_Illumination:
       {
-        if (!checkSensor(addr))
+        if (!checkSensor(id))
         {
           break;
         }
@@ -113,11 +114,16 @@ void loop()
     {
       addr = (raw & _24_ADDR_MASK) >> 8;
       type = (raw & _24_TYPE_MASK) >> 16;
+      id = (raw & (_24_TYPE_MASK | _24_ADDR_MASK)) >> 8;
       value = raw & _24_VALUE_MASK;
       switch (type)
       {
       case TYPE_Control:
       {
+        if (!checkSensor(id))
+        {
+          break;
+        }
         char mystr[10] = {0};
         mystr[0] = '\0';
         if (value & 0b11000000)
