@@ -27,8 +27,8 @@ def api(url, **kwargs):
 def put_data(category, type, value):
   return api(SERVER + '/data/' + category + '/' + type, value=value, key=KEY)
 
-type_string = {0b01100010: 'humidity', 0b01100011: 'watered', 0b01011110: 'humidity',
-               0b01011111: 'temperature', 0b01100000: 'distance', 0b01100001: 'light'}
+type_string = {0b01011110: 'humidity', 0b01011111: 'temperature', 0b01100000: 'distance',
+               0b01100001: 'illumination', 0b01100010: 'moisture', 0b01100011: 'watered'}
 category_string = {1: 'plant', 2: 'plant', 21: 'env'}
 
 def main():

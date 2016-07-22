@@ -19,11 +19,11 @@
   <div class="col-sm-6">
     <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">Soil Humidity</h3>
-        <a class="panel-tip" href="/history/plant/humidity">more</a>
+        <h3 class="panel-title">Soil Moisture</h3>
+        <a class="panel-tip" href="/history/plant/moisture">more</a>
       </div>
       <div class="panel-body">
-        {% module Template('panel.html', strtime=strtime, type='humidity', unit='%', doc=humidity) %}
+        {% module Template('panel.html', strtime=strtime, type='moisture', unit='%', doc=moisture) %}
       </div>
     </div>
   </div>
@@ -43,11 +43,11 @@
   <div class="col-sm-6">
     <div class="panel panel-success">
       <div class="panel-heading">
-        <h3 class="panel-title">Light</h3>
-        <a class="panel-tip" href="/history/plant/light">more</a>
+        <h3 class="panel-title">Illumination</h3>
+        <a class="panel-tip" href="/history/plant/illumination">more</a>
       </div>
       <div class="panel-body">
-        {% module Template('panel.html', strtime=strtime, type='light', unit='lux', doc=light) %}
+        {% module Template('panel.html', strtime=strtime, type='illumination', unit='lux', doc=illumination) %}
       </div>
     </div>
   </div>
