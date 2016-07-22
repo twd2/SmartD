@@ -1,6 +1,6 @@
 # Plant
 
-Automatic waterer.
+Automatic sprinkler.
 
 ## Connection
 
@@ -37,7 +37,7 @@ See `*.h` and configure pins and/or addresses for each sensor or executer.
 - Capacitors 104P (0.1 uF) * (3 if nRF24L01 is installed, otherwise 2) (< 0.1 RMB totally)
 - Resistors 100K * 2 (if uses B), 4.7K * 2 (< 0.1 RMB totally)
 - Lots of DuPont pins (about 1 RMB totally)
-- Some DuPont lines (about 2 RMB totally)
+- Some DuPont cables (about 2 RMB totally)
 - Pump and tubes (about 90 RMB totally)
 
 **Typical cost:** 141.3 RMB (A, Arduino Nano with CH340G, 315MHz RF), 437.3 RMB (B, Arduino Nano with CH340G, 315MHz RF)
