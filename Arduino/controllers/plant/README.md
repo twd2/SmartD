@@ -14,7 +14,7 @@ See `*.h` and configure pins and/or addresses for each sensor or executer.
 
 ## Dependencies
 
-- [RCSwitch(twd2 modified)](https://github.com/twd2/RCSwitch) (strongly recommanded)
+- [RCSwitch (twd2 modified)](https://github.com/twd2/RCSwitch) (strongly recommanded)
 - [DHTlib](http://playground.arduino.cc/Main/DHTLib) (required if and only if DHT11 or DHT22 is installed.)
 - [OneWire](http://playground.arduino.cc/Learning/OneWire) (required if and only if DS18B20 is installed.)
 - [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library) (required if and only if DS18B20 is installed.)
