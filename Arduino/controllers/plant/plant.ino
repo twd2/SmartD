@@ -66,7 +66,6 @@ void loop()
 {
   double dValue1 = 0.0, dValue2 = 0.0;
   unsigned int uValue = 0;
-  bool succeeded = false;
 
 #ifdef _DISTANCE_H_
   DBG("Distance: ");
@@ -75,7 +74,7 @@ void loop()
     DBG(dValue1);
     DBGLN("cm");
 #ifdef _WIRELESS_H_
-    sendValue(TYPE_Distance, (long)(dValue1 * 100));
+    sendValue(TYPE_Distance, toFixedPoint(dValue1));
 #endif
   }
   else
@@ -86,13 +85,12 @@ void loop()
 
 #ifdef _DS18B20_H_
   DBG("DS18B20: ");
-  succeeded = ds18b20(dValue1);
-  if (succeeded)
+  if (ds18b20(dValue1))
   {
     DBG(dValue1);
     DBGLN("C");
 #ifdef _WIRELESS_H_
-    sendValue(TYPE_Temperature, (long)(dValue1 * 100));
+    sendValue(TYPE_Temperature, toFixedPoint(dValue1));
 #endif
   }
   else
@@ -103,8 +101,7 @@ void loop()
 
 #ifdef _DHT11_H_
   DBG("DHT11: ");
-  succeeded = dht11(dValue1, dValue2);
-  if (succeeded)
+  if (dht11(dValue1, dValue2))
   {
     DBG("t=");
     DBG(dValue1);
@@ -114,10 +111,10 @@ void loop()
 #ifdef _WIRELESS_H_
 #ifndef _DS18B20_H_
     DBG("Sending Temperature: ");
-    sendValue(TYPE_Temperature, (long)(dValue1 * 100));
+    sendValue(TYPE_Temperature, toFixedPoint(dValue1));
 #endif
     DBG("Sending Humidity: ");
-    sendValue(TYPE_Humidity, (long)(dValue2 * 100));
+    sendValue(TYPE_Humidity, toFixedPoint(dValue2));
 #endif
   }
   else
@@ -128,8 +125,7 @@ void loop()
 
 #ifdef _DHT22_H_
   DBG("DHT22: ");
-  succeeded = dht22(dValue1, dValue2);
-  if (succeeded)
+  if (dht22(dValue1, dValue2))
   {
     DBG("t=");
     DBG(dValue1);
@@ -139,10 +135,10 @@ void loop()
 #ifdef _WIRELESS_H_
 #ifndef _DS18B20_H_
     DBG("Sending Temperature: ");
-    sendValue(TYPE_Temperature, (long)(dValue1 * 100));
+    sendValue(TYPE_Temperature, toFixedPoint(dValue1));
 #endif
     DBG("Sending Humidity: ");
-    sendValue(TYPE_Humidity, (long)(dValue2 * 100));
+    sendValue(TYPE_Humidity, toFixedPoint(dValue2));
 #endif
   }
   else
@@ -169,8 +165,7 @@ void loop()
 
 #ifdef _SOIL_H_
   DBG("Soil: ");
-  succeeded = soil(dValue1, dValue2);
-  if (succeeded)
+  if (soil(dValue1, dValue2))
   {
     DBG("t=");
     DBG(dValue1);
@@ -179,10 +174,11 @@ void loop()
     DBGLN("%");
 #ifdef _WIRELESS_H_
     DBG("Sending Temperature: ");
-    sendValue(TYPE_Temperature, (long)(dValue1 * 100));
+    sendValue(TYPE_Temperature, toFixedPoint(dValue1));
     DBG("Sending Moisture: ");
-    sendValue(TYPE_Moisture, (long)(dValue2 * 100));
+    sendValue(TYPE_Moisture, toFixedPoint(dValue2));
 #endif
+    water(dValue2);
   }
   else
   {

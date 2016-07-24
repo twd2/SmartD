@@ -11,6 +11,8 @@
 #define DBGLN(x) ((void)0)
 #endif
 
+#define toFixedPoint(x) ((long)((x) * 100)) // TODO(twd2): round?
+
 extern double lastTemperature;
 
 void toBinary(unsigned long v, char *r, int bitLen);

@@ -10,7 +10,7 @@ void soilInit()
 
 int soilAnalogRead(int port)
 {
-  // TODO(twd2): use more precise external ADC
+  // TODO(twd2): use more precise (16 bits) external ADC
   return analogRead(port);
 }
 
