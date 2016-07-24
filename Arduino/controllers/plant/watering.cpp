@@ -39,11 +39,11 @@ void water_plant(double moisture)
   if (moisture < MOISTURE_THRESHOLD)
   {
     // watering is needed
-    if (last_water == 0 || (unsigned long)(millis() - last_water) >= WATER_MIN_INTERVAL)
+    if (last_water == 0 || (unsigned long)(fixedMillis() - last_water) >= WATER_MIN_INTERVAL)
     {
       if (water_do(WATER_DURATION))
       {
-        last_water = millis();
+        last_water = fixedMillis();
       }
     }
   }

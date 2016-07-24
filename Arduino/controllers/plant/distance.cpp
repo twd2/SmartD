@@ -1,4 +1,5 @@
 #include "distance.h"
+
 #include <Arduino.h>
 
 double distanceLastValue = 0.0;

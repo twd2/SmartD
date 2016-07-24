@@ -7,6 +7,7 @@
 #include "sleep.h"
 
 volatile int f_wdt = 0;
+unsigned long millisOffset = 0, microsOffset = 0;
 int _MCUSR = 0, _WDTCSR = 0;
 
 ISR(WDT_vect)
@@ -89,4 +90,7 @@ void sleep(int time)
   sleep_disable();
   power_all_enable();
   WDTCSR = _WDTCSR & ~_BV(WDE) & ~_BV(WDIE);
+
+  const unsigned long millsecondsPerSecond = 1000;
+  millisOffset += time * millsecondsPerSecond;
 }
