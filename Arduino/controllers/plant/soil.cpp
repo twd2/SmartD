@@ -14,6 +14,19 @@ int soilAnalogRead(int port)
   return analogRead(port);
 }
 
+#ifdef SOIL_SENSOR_TYPE_A
+bool soil(double &temperature, double &moisture)
+{
+  moisture = soilAnalogRead(MOISTURE_PIN);
+  moisture = 1.0 - moisture / (1 << ADC_BITS);
+
+  temperature = -327.68;
+
+  return true;
+}
+#endif
+
+#ifdef SOIL_SENSOR_TYPE_B
 bool soil(double &temperature, double &moisture)
 {
   moisture = soilAnalogRead(MOISTURE_PIN);
@@ -24,3 +37,5 @@ bool soil(double &temperature, double &moisture)
 
   return true;
 }
+#endif
+
