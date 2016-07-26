@@ -2,7 +2,9 @@
 #include "watering.h"
 #include "distance.h"
 #include "relay.h"
+#include "ids.h"
 #include "wireless.h"
+#include "sleep.h"
 
 #include <Arduino.h>
 
