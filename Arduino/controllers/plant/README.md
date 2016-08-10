@@ -18,13 +18,15 @@ See `*.h` and configure pins and/or addresses for each sensor or executer.
 - [DHTlib](http://playground.arduino.cc/Main/DHTLib) (required if and only if DHT11 or DHT22 is installed.)
 - [OneWire](http://playground.arduino.cc/Learning/OneWire) (required if and only if DS18B20 is installed.)
 - [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library) (required if and only if DS18B20 is installed.)
-- Wire (required if and only if I2C devices are installed.)
+- Wire (required if and only if I2C devices like BH1750 are installed.)
 
 ## Materials
 
 **Choosing soil moisture sensor:** I found there are two kinds of soil moisture sensors. One called A is cheap (about 4 RMB) and it measures soil moisture by measuring the resistance between two electrode. It can be easily corroded and its lifetime is quite short (less than 3 months). The other one called B is more expensive (about 300 RMB) and the seller said it measures the capacitance. The seller also said its lifetime is about 3 years, but I haven't tested because I don't have enough time. It also integrates temperature sensor. You may choose any one according to your own situation.
 
-**Choosing wireless module:** nRF24L01 support is not implemented present, so please use 315/433MHz RF :-).
+Don't forget to uncomment `#define SOIL_SENSOR_TYPE_A 1` and comment `#define SOIL_SENSOR_TYPE_B 1` in `soil.h` when you choose to use A.
+
+**Choosing wireless module:** nRF24L01 support is not implemented yet, so please use 315/433MHz RF instead :-).
 
 - PCB (about 10 RMB each)
 - Arduino Nano (FT232R and CH340G are both compatible) (about 15 RMB each for CH340G or about 24 RMB each for FT232R)

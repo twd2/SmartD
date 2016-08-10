@@ -4,8 +4,6 @@
 
 #include <math.h>
 
-double lastTemperature = 25.0;
-
 void setup()
 {
   sleepInit();
