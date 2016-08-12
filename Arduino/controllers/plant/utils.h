@@ -13,8 +13,4 @@
 
 #define toFixedPoint(x) ((long)((x) * 100)) // TODO(twd2): round?
 
-extern double lastTemperature;
-
-void toBinary(unsigned long v, char *r, int bitLen);
-
 #endif // _UTILS_H_
