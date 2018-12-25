@@ -20,14 +20,14 @@ class PlantHandler(base.BaseHandler):
 class PlantWSHandler(ws.BaseHandler):
   def open(self):
     event.subscribe(self._on_event, ['data-updated'])
-    self.json({"event":"updated","type":"moisture"})
-    self.json({"event":"updated","type":"temperature"})
-    self.json({"event":"updated","type":"illumination"})
-    self.json({"event":"updated","type":"distance"})
+    self.json({'event': 'updated', 'type': 'moisture'})
+    self.json({'event': 'updated', 'type': 'temperature'})
+    self.json({'event': 'updated', 'type': 'illumination'})
+    self.json({'event': 'updated', 'type': 'distance'})
 
   def on_close(self):
     event.unsubscribe(self._on_event)
-    print("WebSocket closed")
+    print('WebSocket closed')
   
   def _on_event(self, key, value):
     assert key == 'data-updated'

@@ -17,13 +17,13 @@ class PowerHandler(base.BaseHandler):
 class PowerWSHandler(ws.BaseHandler):
   def open(self):
     event.subscribe(self._on_event, ['data-updated'])
-    self.json({"event":"updated","type":"voltage"})
-    self.json({"event":"updated","type":"current"})
-    self.json({"event":"updated","type":"power"})
+    self.json({'event': 'updated', 'type': 'voltage'})
+    self.json({'event': 'updated', 'type': 'current'})
+    self.json({'event': 'updated', 'type': 'power'})
 
   def on_close(self):
     event.unsubscribe(self._on_event)
-    print("WebSocket closed")
+    print('WebSocket closed')
   
   def _on_event(self, key, value):
     assert key == 'data-updated'
