@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% if name %}{{ name }} - {% end %}SmartD{% end %}</title>
-    <link rel="icon" type="image/png" href="/static/favicon.png" />
-    <link href="{{ bower_url('bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{ static_url('custom.css')}}" rel="stylesheet" />
-    <script src="{{ bower_url('jquery/dist/jquery.min.js')}}"></script>
+    <link rel="icon" type="image/png" href="{{ static_url('favicon.png') }}" />
+    <link href="{{ bower_url('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ static_url('custom.css') }}" rel="stylesheet" />
+    <script src="{{ bower_url('jquery/dist/jquery.min.js') }}"></script>
   </head>
   <body>
-    {% set nodes = ['Home', 'Plant', 'Environment'] %}
+    {% set nodes = ['Home', 'Power', 'Plant', 'Environment'] %}
     {% module Template('nav.html', name=name, nodes=nodes)%}
     <div class="container theme-showcase" role="main">
       {% block body %}Default body{% end %}
@@ -20,6 +20,6 @@
         <p class="text-muted">Powered by <a href="//twd2.net/" target="_blank">twd2</a> / <a href="https://github.com/twd2/SmartD" target="_blank">Fork me on GitHub</a></p>
       </div>
     </footer>
-    <script src="{{ bower_url('bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ bower_url('bootstrap/dist/js/bootstrap.min.js') }}"></script>
   </body>
 </html>
