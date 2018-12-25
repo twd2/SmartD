@@ -5,9 +5,9 @@ from tornado import ioloop
 @gen.coroutine
 def put(category, type, value):
   coll = db.Collection('data')
-  return (yield coll.insert({'category': category,
-                             'type': type,
-                             'value': value}))
+  return (yield coll.insert_one({'category': category,
+                                 'type': type,
+                                 'value': value}))
 
 @gen.coroutine
 def get(category, type):
