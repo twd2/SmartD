@@ -10,6 +10,8 @@ from tornado import options
 
 @app.route('History', '/history/([^/]+)/(.+)')
 class HistoryHandler(base.BaseHandler):
+  CATEGORY_COLOR = {'plant': 'success'}
+
   @gen.coroutine
   def get(self, category, type):
     to_float = lambda _: float(_) if self.get_query_argument('float', 'true') == 'true' else _
@@ -18,6 +20,6 @@ class HistoryHandler(base.BaseHandler):
     x = [util.datetime.strtime(doc['_id'].generation_time) for doc in l]
     y = [to_float(doc['value']) for doc in l]
     self.render('history.html', category=category, type=type,
+                color=HistoryHandler.CATEGORY_COLOR.get(category, 'default'),
                 data_x=json.dumps(x), data_y=json.dumps(y))
-    #self.json({'x':x, 'y':y})
 

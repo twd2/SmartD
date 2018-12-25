@@ -17,7 +17,7 @@ class DataHandler(base.BaseHandler):
     l.reverse()
     x = [util.datetime.strtime(doc['_id'].generation_time) for doc in l]
     y = [to_float(doc['value']) for doc in l]
-    self.json({'x':x, 'y':y})
+    self.json({'x': x, 'y': y})
 
   @gen.coroutine
   def post(self, category, type):
@@ -30,3 +30,4 @@ class DataHandler(base.BaseHandler):
     yield data.put(category, type, value)
     yield event.publish('data-updated', {'category': category, 'type': type})
     self.json({})
+

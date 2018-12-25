@@ -16,3 +16,4 @@ class LoginHandler(base.BaseHandler):
       return
     #TODO(twd2): check
     self.redirect('/')
+

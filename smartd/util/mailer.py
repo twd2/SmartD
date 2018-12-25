@@ -20,3 +20,4 @@ def send_mail(to, subject, content):
   yield server.login(options.options.smtp_user, options.options.smtp_password)
   yield server.sendmail(options.options.mail_from, to, msg.as_string())
   return (yield server.quit())
+

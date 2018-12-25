@@ -20,3 +20,4 @@ class MagicHandler(base.BaseHandler):
       return
     yield event.publish('on-function-' + function, {'password': password})
     self.json({})
+

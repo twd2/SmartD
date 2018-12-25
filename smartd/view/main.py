@@ -40,3 +40,4 @@ class MainHandler(base.BaseHandler):
       size = 0
     self.render('main.html', count=count, size=size, format=format.size_format,
                 cpu_info=cpu_info, mem_info=mem_info, disk_info=disk_info, net_info=net_info)
+

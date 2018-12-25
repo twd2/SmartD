@@ -21,3 +21,4 @@ class BaseHandler(web.RequestHandler):
 
   def json(self, obj):
     self.write(json.dumps(obj))
+

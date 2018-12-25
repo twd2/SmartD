@@ -33,3 +33,4 @@ class PlantWSHandler(ws.BaseHandler):
     assert key == 'data-updated'
     if value['category'] == 'plant':
       self.json({'event': 'updated', 'type': value['type']})
+

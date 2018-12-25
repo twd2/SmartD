@@ -25,3 +25,4 @@ def make_app(**kwargs):
 def init_template(p):
   global template_loader
   template_loader = template.Loader(p)
+

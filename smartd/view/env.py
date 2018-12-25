@@ -31,3 +31,4 @@ class EnvWSHandler(ws.BaseHandler):
     assert key == 'data-updated'
     if value['category'] == 'env':
       self.json({'event': 'updated', 'type': value['type']})
+
