@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="page-header">
+  <h1>Solar</h1>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Voltage</h3>
+        <a class="panel-tip" href="/history/solar/voltage">more</a>
+      </div>
+      <div class="panel-body">
+        {% module Template('panel.html', strtime=strtime, type='voltage', unit='V', doc=voltage) %}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current</h3>
+        <a class="panel-tip" href="/history/solar/current">more</a>
+      </div>
+      <div class="panel-body">
+        {% module Template('panel.html', strtime=strtime, type='current', unit='mA', doc=current) %}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">Power</h3>
+        <a class="panel-tip" href="/history/solar/power">more</a>
+      </div>
+      <div class="panel-body">
+        {% module Template('panel.html', strtime=strtime, type='power', unit='W', doc=power) %}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function()
+  {    
+    function render_chart($obj, data)
+    {
+      $obj.highcharts({
+        title: {
+          text: null
+        },
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        xAxis: {
+          categories: data['x']
+        },
+        yAxis: {
+          title: {
+            text: null
+          },
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }]
+        },
+        tooltip: {
+          valueSuffix: null
+        },
+        series: [{
+          name: 'Value',
+          data: data['y']
+        }]
+      });
+    }
+
+    var category = 'solar';
+
+    var ws_url = 'ws';
+    if (window.location.protocol == 'https:')
+    {
+      ws_url += 's';
+    }
+    ws_url += '://' + window.location.host;
+
+    var ws = new WebSocket(ws_url + '/' + category + '-ws');
+    ws.onopen = function() {
+       // todo: auth
+    };
+      
+    ws.onmessage = function (msg) {
+       var e = JSON.parse(msg.data);
+       if (e['event'] == 'updated')
+       {
+         console.log(msg.data);
+         $.getJSON('/data/' + category + '/' + e['type'], function (obj) {
+           if (obj['x'].length > 0)
+           {
+             render_chart($('#container-' + e['type']), obj);
+             $('#' + e['type'] + '-value').text(obj['y'][obj['y'].length - 1]);
+             $('#' + e['type'] + '-datetime').text('(at ' + obj['x'][obj['x'].length - 1] + ')');
+           }
+           else
+           {
+             $('#container-' + e['type']).text('No data present.');
+           }
+         });
+       }
+    };
+  });
+</script>
+<script src="{{ bower_url('highcharts/highcharts.js') }}"></script>
+<script src="{{ bower_url('highcharts/modules/exporting.js') }}"></script>
+{% end %}

@@ -10,7 +10,7 @@ from tornado import options
 
 @app.route('History', '/history/([^/]+)/(.+)')
 class HistoryHandler(base.BaseHandler):
-  CATEGORY_COLOR = {'plant': 'success'}
+  CATEGORY_COLOR = {'plant': 'success', 'solar': 'warning'}
 
   @gen.coroutine
   def get(self, category, type):
