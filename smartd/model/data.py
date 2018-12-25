@@ -25,7 +25,7 @@ def count(category=None, type=None):
   if type:
     query['type'] = type
   coll = db.Collection('data')
-  return (yield coll.find(query).count())
+  return (yield coll.count_documents(query))
 
 @gen.coroutine
 def total_size():
