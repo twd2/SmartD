@@ -42,8 +42,7 @@ def get_list(category, type, count=100):
 @gen.coroutine
 def ensure_indexes():
   coll = db.Collection('data')
-  yield coll.ensure_index([('category', 1), ('type', 1)])
-  yield coll.ensure_index([('category', 1), ('type', 1), ('_id', -1)])
+  yield coll.create_index([('category', 1), ('type', 1), ('_id', -1)])
 
 @gen.coroutine
 def main():
