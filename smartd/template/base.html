@@ -10,7 +10,7 @@
     <script src="{{ bower_url('jquery/dist/jquery.min.js') }}"></script>
   </head>
   <body>
-    {% set nodes = ['Home', 'Power', 'Solar', 'Plant', 'Environment'] %}
+    {% set nodes = ['Home', 'Power', 'Solar'] %}
     {% module Template('nav.html', name=name, nodes=nodes)%}
     <div class="container theme-showcase" role="main">
       {% block body %}Default body{% end %}
